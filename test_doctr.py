@@ -34,10 +34,10 @@ def detection_doctr(image, model):
 
     return bboxes
 detect_model = get_model_doctr()
-boxes= detection_doctr("./test/mcocr_public_145013cgpey.jpg", detect_model)
+boxes= detection_doctr("./img_test/mcocr_public_145013cgpey.jpg", detect_model)
 bboxes = deepcopy(boxes)
 
-img =cv2.imread('./test/mcocr_public_145013cgpey.jpg')
+img =cv2.imread('./img_test/mcocr_public_145013cgpey.jpg')
 imageRectangle = img.copy()
 #h, w = img.shape[:2]
 # define the starting and end points of the rectangle
