@@ -49,7 +49,7 @@ for box in bboxes:#.tolist():
             (xmax, ymax),
             color= (0, 0, 255),
             thickness=2)
-plt.imshow(image)
-#print(boxes)
 
+cv2.imshow('display image', image)
+cv2.waitKey(0)
 print("--- %s seconds ---" % (time.time() - start_time))
