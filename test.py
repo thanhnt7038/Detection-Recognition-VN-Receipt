@@ -16,7 +16,7 @@ start_time = time.time()
 @lru_cache
 def get_model_doctr(arch='db_resnet50'):
     model = detection_predictor(
-        arch='db_resnet50', pretrained='./db_resnet50.pt', assume_straight_pages=True)
+        arch='db_resnet50', pretrained=True, assume_straight_pages=True)
     return model
 
 def detection_doctr(image, model):
@@ -151,9 +151,9 @@ def get_mapping(box_to_merge,text_to_merge):
 @lru_cache
 def get_model_vietocr():
     config = Cfg.load_config_from_name('vgg_seq2seq')
-    # config['weights'] = 'https://drive.google.com/uc?id=1nTKlEog9YFK74kPyX0qLwCWi60_YHHk4'
+    config['weights'] = 'https://drive.google.com/uc?id=1nTKlEog9YFK74kPyX0qLwCWi60_YHHk4'
     #config['weights'] = 'https://drive.google.com/uc?id=13327Y1tz1ohsm5YZMyXVMPIOjoOA0OaA' #(transformer)
-    config['weights'] = './vgg19_bn_seq2seq.pth'
+    #config['weights'] = './vgg19_bn_seq2seq.pth' 
     config['cnn']['pretrained'] = False
     if torch.cuda.is_available():
         config['device'] = 'cuda:0'
@@ -184,7 +184,7 @@ def recognition_vietocr(image, bboxes, model):
 
 
 detect_model = get_model_doctr()
-bboxes, image, h, w = detection_doctr("./test/Payment 08.03.22_page_13.jpg", detect_model)
+bboxes, image, h, w = detection_doctr("./img_test/mcocr_public_145013aagqw.jpg", detect_model)
 
 recognize_model = get_model_vietocr()
 raw_text = recognition_vietocr(image, bboxes, recognize_model)
